@@ -1,4 +1,3 @@
-/* jshint esnext:true */
 const settings = {
 	size: {
 		width: 41,
@@ -201,7 +200,7 @@ class Game {
 		if (this.showFPS) {
 			let fpsText = ` FPS: ${this.fps}`;
 			this.drawText(fpsText, this.width - fpsText.length, 0);
-			this.drawText(' ', this.width - 1, 1)
+			this.drawText(' ', this.width - 1, 1);
 		}
 		this.drawCanvas();
 	}
