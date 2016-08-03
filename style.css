@@ -1,7 +1,12 @@
 pre {
-	font-size: 200%;
+	font-size: 1.6em;
 	line-height: 0.65;
 	text-align: center;
+	font-family: inherit;
+}
+
+code {
+	font-family: "Consolas", monospace;
 }
 
 .anchor-panel {
