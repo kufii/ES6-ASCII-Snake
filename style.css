@@ -4,7 +4,8 @@ pre {
 	text-align: center;
 }
 
-pre, code {
+pre,
+code {
 	font-family: "Consolas", monospace;
 }
 
