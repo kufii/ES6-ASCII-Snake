@@ -1,3 +1,6 @@
 {
-	"extends": "adpyke-es6"
+	"extends": "adpyke-es6",
+	"globals": {
+		"Util": true
+	}
 }

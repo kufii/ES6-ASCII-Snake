@@ -1,7 +1,7 @@
 (() => {
 	'use strict';
 
-	const canvas = document.querySelector('#canvas');
+	const canvas = Util.q('#canvas');
 
 	const settings = {
 		size: {
@@ -22,29 +22,29 @@
 	{
 		const popupButtonClick = e => {
 			e.preventDefault();
-			let target = document.querySelector(`#${e.target.dataset.target}`);
-			target.classList.toggle('hidden');
+			let target = Util.q(`#${e.target.dataset.target}`);
+			Util.toggleAttribute(target, 'hidden');
 		};
-		Array.from(document.querySelectorAll('.popup-button')).forEach(button => button.onclick = popupButtonClick);
+		Util.qq('.popup-button').forEach(button => button.onclick = popupButtonClick);
 
 		const keybindingKeyDown = e => {
 			e.preventDefault();
 			e.target.value = e.keyCode;
 		};
-		Array.from(document.querySelectorAll('.keybinding')).forEach(keybinding => keybinding.onkeydown = keybindingKeyDown);
+		Util.qq('.popup-button').forEach(keybinding => keybinding.onkeydown = keybindingKeyDown);
 	}
 	{
-		const difficultyDropdown = document.querySelector('#settings-difficulty');
-		const chkShowFPS = document.querySelector('#settings-fps');
-		const keyUpBox = document.querySelector('#settings-key-up');
-		const keyDownBox = document.querySelector('#settings-key-down');
-		const keyLeftBox = document.querySelector('#settings-key-left');
-		const keyRightBox = document.querySelector('#settings-key-right');
-		const settingsDiv = document.querySelector('#settings-div');
+		const difficultyDropdown = Util.q('#settings-difficulty');
+		const chkShowFPS = Util.q('#settings-fps');
+		const keyUpBox = Util.q('#settings-key-up');
+		const keyDownBox = Util.q('#settings-key-down');
+		const keyLeftBox = Util.q('#settings-key-left');
+		const keyRightBox = Util.q('#settings-key-right');
+		const settingsDiv = Util.q('#settings-div');
 
 		const loadLocalStorage = () => {
 			difficultyDropdown.value = localStorage.difficulty || settings.difficulty;
-			chkShowFPS.checked = localStorage.showFPS !== undefined ? localStorage.showFPS === 'true' : settings.showFPS;
+			chkShowFPS.checked = (typeof localStorage.showFPS !== 'undefined') ? localStorage.showFPS === 'true' : settings.showFPS;
 			keyUpBox.value = localStorage.keyUp || settings.bindings.up;
 			keyDownBox.value = localStorage.keyDown || settings.bindings.down;
 			keyLeftBox.value = localStorage.keyLeft || settings.bindings.left;
@@ -60,14 +60,14 @@
 			game.loadSettings();
 		};
 
-		document.querySelector('#settings-save').onclick = e => {
+		Util.q('#settings-save').onclick = e => {
 			e.preventDefault();
 			saveLocalStorage();
-			settingsDiv.classList.add('hidden');
+			settingsDiv.setAttribute('hidden', '');
 		};
-		document.querySelector('#settings-cancel').onclick = e => {
+		Util.q('#settings-cancel').onclick = e => {
 			e.preventDefault();
-			settingsDiv.classList.add('hidden');
+			settingsDiv.setAttribute('hidden', '');
 			loadLocalStorage();
 		};
 
@@ -115,7 +115,7 @@
 				RESET: settings.bindings.reset
 			};
 			this.snake.timeToMove = this.difficulty[localStorage.difficulty || settings.difficulty];
-			this.showFPS = localStorage.showFPS !== undefined ? localStorage.showFPS === 'true' : settings.showFPS;
+			this.showFPS = (typeof localStorage.showFPS !== 'undefined') ? localStorage.showFPS === 'true' : settings.showFPS;
 			this.genBindings();
 		}
 
