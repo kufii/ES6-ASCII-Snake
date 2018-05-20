@@ -23,7 +23,7 @@
 		const popupButtonClick = e => {
 			e.preventDefault();
 			let target = Util.q(`#${e.target.dataset.target}`);
-			Util.toggleAttribute(target, 'hidden');
+			target.hidden = !target.hidden;
 		};
 		Util.qq('.popup-button').forEach(button => button.onclick = popupButtonClick);
 
@@ -63,11 +63,11 @@
 		Util.q('#settings-save').onclick = e => {
 			e.preventDefault();
 			saveLocalStorage();
-			settingsDiv.setAttribute('hidden', '');
+			settingsDiv.hidden = true;
 		};
 		Util.q('#settings-cancel').onclick = e => {
 			e.preventDefault();
-			settingsDiv.setAttribute('hidden', '');
+			settingsDiv.hidden = true;
 			loadLocalStorage();
 		};
 
