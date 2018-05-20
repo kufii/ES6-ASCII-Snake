@@ -22,7 +22,7 @@
 	{
 		const popupButtonClick = e => {
 			e.preventDefault();
-			let target = Util.q(`#${e.target.dataset.target}`);
+			const target = Util.q(`#${e.target.dataset.target}`);
 			target.hidden = !target.hidden;
 		};
 		Util.qq('.popup-button').forEach(button => button.onclick = popupButtonClick);
@@ -126,7 +126,7 @@
 
 		bindEvents() {
 			window.onkeydown = e => {
-				let key = this._bindings[e.keyCode];
+				const key = this._bindings[e.keyCode];
 				if (!key) return;
 				e.preventDefault();
 
@@ -137,7 +137,7 @@
 				}
 			};
 			window.onkeyup = e => {
-				let key = this._bindings[e.keyCode];
+				const key = this._bindings[e.keyCode];
 				if (!key) return;
 				e.preventDefault();
 
@@ -147,7 +147,7 @@
 
 		countdownToStart(count = 3) {
 			this.draw();
-			let id = setInterval(() => {
+			const id = setInterval(() => {
 				if (count > 0) {
 					this.drawText(count);
 					this.drawCanvas();
@@ -163,14 +163,14 @@
 			this.lastUpdate = Date.now();
 			let numFrames = 0;
 			let last = Date.now();
-			let frame = () => {
+			const frame = () => {
 				if (this.STOP) {
 					this.drawText('GAME OVER', null, Math.floor((game.height - 1) / 2) - 1);
 					this.drawText('(PRESS SPACE)', null, Math.floor((game.height - 1) / 2) + 1);
 					this.drawCanvas();
 					return;
 				}
-				let now = Date.now();
+				const now = Date.now();
 				numFrames += 1;
 				if (now - last >= 1000) {
 					last = now;
@@ -201,7 +201,7 @@
 				this.drawText(` Mmmm, ${this.fruitType} `, null, this.height - 1);
 			}
 			if (this.showFPS) {
-				let fpsText = ` FPS: ${this.fps}`;
+				const fpsText = ` FPS: ${this.fps}`;
 				this.drawText(fpsText, this.width - fpsText.length, 0);
 				this.drawText(' ', this.width - 1, 1);
 			}
@@ -211,7 +211,7 @@
 		drawText(text, x, y) {
 			text = text.toString();
 			if (!y && y !== 0) y = Math.floor((this.height - 1) / 2);
-			let row = this.gameCanvas[y];
+			const row = this.gameCanvas[y];
 			if (!x && x !== 0) x = Math.floor((row.length - text.length) / 2);
 			for (let i = 0; i < text.length; i++) {
 				row[x + i] = text[i];
@@ -219,7 +219,7 @@
 		}
 
 		drawCanvas() {
-			let output = this.gameCanvas.map(line => line.join('')).join('\n');
+			const output = this.gameCanvas.map(line => line.join('')).join('\n');
 			if (output !== this.lastOutput) {
 				this.container.textContent = output;
 				this.lastOutput = output;
@@ -227,7 +227,7 @@
 		}
 
 		clearCanvas() {
-			let canvas = [];
+			const canvas = [];
 			for (let row = 0; row < this.height; row++) {
 				canvas[row] = [];
 				for (let col = 0; col < this.width; col++) {
@@ -258,7 +258,7 @@
 		}
 
 		update(delta) {
-			let curPressed = game.pressed;
+			const curPressed = game.pressed;
 			if (curPressed.UP && !this.prevPressed.UP && this.prevdy === 0) {
 				this.dx = 0;
 				this.dy = -1;
@@ -297,7 +297,7 @@
 					game.STOP = true;
 				}
 				for (let i = 1; i < this.parts.length; i++) {
-					let part = this.parts[i];
+					const part = this.parts[i];
 					if (frontPart.x === part.x && frontPart.y === part.y) {
 						game.STOP = true;
 						break;
@@ -312,11 +312,11 @@
 
 				if (frontPart.x === game.fruit.x && frontPart.y === game.fruit.y) {
 					this.growCounter = this.growBy;
-					let fruits = ['Blueberry', 'Apple', 'Orange', 'Strawberry', 'Cherry', 'Kiwi', 'Passion Fruit'];
+					const fruits = ['Blueberry', 'Apple', 'Orange', 'Strawberry', 'Cherry', 'Kiwi', 'Passion Fruit'];
 					game.fruitType = fruits[Math.floor(Math.random() * fruits.length)];
 					game.fruit.collect();
 					if (Math.random() < game.chanceOfMine) {
-						let mine = new Fruit(0, 0, 0, 'o');
+						const mine = new Fruit(0, 0, 0, 'o');
 						mine.collect();
 						game.mines.push(mine);
 					}
@@ -338,10 +338,10 @@
 		}
 
 		collect() {
-			let maxX = game.width - 1;
-			let minX = 1;
-			let maxY = game.height - 1;
-			let minY = 1;
+			const maxX = game.width - 1;
+			const minX = 1;
+			const maxY = game.height - 1;
+			const minY = 1;
 
 			let x, y;
 			let isValid = true;
