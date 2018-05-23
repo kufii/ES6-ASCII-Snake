@@ -31,7 +31,7 @@
 			e.preventDefault();
 			e.target.value = e.keyCode;
 		};
-		Util.qq('.popup-button').forEach(keybinding => keybinding.onkeydown = keybindingKeyDown);
+		Util.qq('.keybinding').forEach(keybinding => keybinding.onkeydown = keybindingKeyDown);
 	}
 	{
 		const difficultyDropdown = Util.q('#settings-difficulty');
