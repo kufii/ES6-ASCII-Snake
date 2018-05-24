@@ -292,8 +292,8 @@
 				}
 
 				frontPart = this.parts[0];
-				if (frontPart.x === 0 || frontPart.x === game.width - 1 ||
-					frontPart.y === 0 || frontPart.y === game.height - 1) {
+				if (frontPart.x === 0 || frontPart.x === game.width - 1
+					|| frontPart.y === 0 || frontPart.y === game.height - 1) {
 					game.STOP = true;
 				}
 				for (let i = 1; i < this.parts.length; i++) {
